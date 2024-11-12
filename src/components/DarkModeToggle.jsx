@@ -1,25 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useContext } from 'react';
+import { ThemeContext } from './ThemeProvider';
+import { Sun, Moon, Ghost, Skull, Box, Stars } from 'lucide-react';
 
 export default function DarkModeToggle() {
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem('darkMode') === 'true'
-  );
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    localStorage.setItem('darkMode', darkMode);
-  }, [darkMode]);
+  const themeIcons = [
+    { name: 'light', icon: <Sun className="w-6 h-6" /> },
+    { name: 'dark', icon: <Moon className="w-6 h-6" /> },
+    { name: 'halloween', icon: <Ghost className="w-6 h-6" /> },
+    { name: 'synthwave', icon: <Skull className="w-6 h-6" /> },
+    { name: 'wireframe', icon: <Box className="w-6 h-6" /> },
+    { name: 'night', icon: <Stars className="w-6 h-6" /> }
+  ];
+
+  const currentThemeIndex = themeIcons.findIndex(t => t.name === theme);
+  
+  const handleClick = () => {
+    const nextIndex = (currentThemeIndex + 1) % themeIcons.length;
+    toggleTheme(themeIcons[nextIndex].name);
+  };
 
   return (
-    <button
-      onClick={() => setDarkMode(!darkMode)}
-      className="fixed bottom-4 right-4 p-3 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 shadow-lg"
-    >
-      {darkMode ? '🌞' : '🌙'}
-    </button>
+    <div className="fixed bottom-4 right-4 z-50"> {/* Changed from top-4 to bottom-4 */}
+      <button
+        onClick={handleClick}
+        className="p-2 rounded-lg hover:bg-opacity-20 hover:bg-gray-500"
+        title={theme}
+      >
+        {themeIcons[currentThemeIndex]?.icon}
+      </button>
+    </div>
   );
 }

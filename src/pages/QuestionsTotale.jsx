@@ -55,62 +55,50 @@ export default function QuestionsTotale() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-6 flex justify-between items-center">
-      <h1 className="text-3xl font-bold text-gray-900 dark:text-white">All Questions</h1>
-        <div className="space-x-4">
-          <button
-            onClick={() => setIsModalOpen(true)}
-          className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200"
-          >
-              Add New Question
-          </button>
-          <button
-      onClick={handleSaveChanges}
-      className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors duration-200"
-          >
-              Save Changes
-          </button>
-        </div>
-      </div>
-
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-          <thead className="bg-gray-50 dark:bg-gray-800">
-            <tr>
-              <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                Select
-              </th>
-              <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                Question
-              </th>
-              <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                Options
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+    <div className="container mx-auto p-6">
+  <div className="flex justify-between items-center mb-6">
+    <h1 className="text-3xl font-bold text-base-content">All Questions</h1>
+    <div className="space-x-4">
+      <button onClick={() => setIsModalOpen(true)} className="btn btn-primary">
+        Add New Question
+      </button>
+      <button onClick={handleSaveChanges} className="btn btn-success">
+        Save Changes
+      </button>
+    </div>
+  </div>
+  
+  <div className="overflow-x-auto">
+    <table className="table table-zebra w-full">
+      <thead>
+        <tr>
+          <th className="bg-base-200">Select</th>
+          <th className="bg-base-200">Question</th>
+          <th className="bg-base-200">Options</th>
+        </tr>
+      </thead>
+      <tbody className="bg-base-100 divide-y divide-base-200">
             {allQuestions.map((question) => (
-              <tr key={question.id} className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200">
-                <td className="px-6 py-4 whitespace-nowrap">
+              <tr key={question.id} className="hover:bg-base-200 transition-colors duration-200">
+                <td className="p-4">
                   <input
                     type="checkbox"
-                checked={selectedQuestions.includes(question.id)}
+                    checked={selectedQuestions.includes(question.id)}
                     onChange={() => handleCheckboxChange(question.id)}
-                    className="form-checkbox h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
+                    className="checkbox checkbox-primary"
                   />
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-100">
+                <td className="p-4 text-sm">
                   {question.text}
                 </td>
-                <td className="px-6 py-4">
+                <td className="p-4">
                   <ul className="space-y-1">
                     {question.options.map((option, idx) => (
                       <li 
                         key={idx} 
                         className={`text-sm ${option === question.correctAnswer 
-                          ? 'text-emerald-600 dark:text-emerald-400 font-semibold' 
-                          : 'text-gray-500 dark:text-gray-400'}`}
+                          ? 'text-success font-semibold' 
+                          : 'text-base-content/60'}`}
                       >
                         {option}
                       </li>
@@ -120,6 +108,7 @@ export default function QuestionsTotale() {
               </tr>
             ))}
           </tbody>
+
         </table>
       </div>
 
