@@ -23,7 +23,7 @@ export default function DarkModeToggle() {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50"> {/* Changed from top-4 to bottom-4 */}
+    <div className="fixed bottom-4 right-4 z-50"> 
       <button
         onClick={handleClick}
         className="p-2 rounded-lg hover:bg-opacity-20 hover:bg-gray-500"

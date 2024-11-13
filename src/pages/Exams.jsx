@@ -226,10 +226,3 @@ export default function Exams() {
 
 
 
-/*
-
-flex items-center px-6 py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 
-    hover:from-blue-600 hover:to-blue-700 text-white rounded-lg shadow-lg
-    transform hover:scale-105 transition-all duration-200 space-x-2
-    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50
-    active:scale-95 */

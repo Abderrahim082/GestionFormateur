@@ -2,11 +2,11 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
-//  darkMode: 'class',
+
   theme: {
     extend: {
       colors: {
-        // You can add custom colors here if needed
+        
       },
     },
   },
@@ -41,6 +41,6 @@ module.exports = {
       "lemonade",
       "night",
       "coffee",
-      "winter"], // you can add more themes if needed
+      "winter"], 
   },
 }

@@ -15,7 +15,16 @@ export default function QuestionsTotale() {
     options: ['', '', '', ''], 
     correctAnswer: '' 
   });
-
+  const handleSelectAll = (e) => {
+    if (e.target.checked) {
+      
+      setSelectedQuestions(allQuestions.map(q => q.id));
+    } else {
+      
+      setSelectedQuestions([]);
+    }
+  };
+  
   const handleSaveChanges = () => {
     const selectedQuestionsData = allQuestions.filter(q => selectedQuestions.includes(q.id));
     dispatch(addQuestionsToExam({ examId: parseInt(id), questions: selectedQuestionsData }));
@@ -72,7 +81,14 @@ export default function QuestionsTotale() {
     <table className="table table-zebra w-full">
       <thead>
         <tr>
-          <th className="bg-base-200">Select</th>
+          <th className="bg-base-200">
+          <input
+        type="checkbox"
+        className="checkbox checkbox-primary"
+        onChange={handleSelectAll}
+        checked={selectedQuestions.length === allQuestions.length && allQuestions.length > 0}
+      />
+          </th>
           <th className="bg-base-200">Question</th>
           <th className="bg-base-200">Options</th>
         </tr>
